@@ -14,7 +14,8 @@ if ($conn->connect_error) {
 }
 echo "Connected successfully";
 
-
+$sql = "SELECT id, name, about_me, biography FROM heroes";
+$result = $conn->query($sql);
 
 ?>
 
@@ -31,19 +32,10 @@ echo "Connected successfully";
   </head>
   <body>
 
-    <?php 
-        $sql = "SELECT id, name, about_me, biography FROM heroes";
-        $result = $conn->query($sql);
-        
-        if ($result->num_rows > 0) {
-          // output data of each row
-          while($row = $result->fetch_assoc()) {
-            echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " - Biography" . $row["biography"]. "<br>";
-          }
-        } else {
-          echo "0 results";
-        }
-        $conn->close();
+    <?php
+
+        include "output.php";
+    
     ?>
     
       
