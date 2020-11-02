@@ -3,9 +3,10 @@
 $servername = "localhost";
 $username = "root";
 $password = "root";
+$dbname = "heroes";
 
 // Create connection
-$conn = new mysqli($servername, $username, $password);
+$conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
 if ($conn->connect_error) {
@@ -29,6 +30,22 @@ echo "Connected successfully";
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
   <body>
+
+    <?php 
+        $sql = "SELECT id, name, about_me, biography FROM heroes";
+        $result = $conn->query($sql);
+        
+        if ($result->num_rows > 0) {
+          // output data of each row
+          while($row = $result->fetch_assoc()) {
+            echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " - Biography" . $row["biography"]. "<br>";
+          }
+        } else {
+          echo "0 results";
+        }
+        $conn->close();
+    ?>
+    
       
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
