@@ -1,0 +1,1 @@
+Compartmentalize php functions for cleaner code

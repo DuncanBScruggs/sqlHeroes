@@ -1,3 +1,3 @@
 # SQL Heroes
 
-learning to use mwsql and php
+learning to use mysql and php
