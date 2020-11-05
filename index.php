@@ -1,4 +1,4 @@
-
+<?php include "functions.php"; ?>
 <!doctype html>
 <html lang="en">
 
@@ -15,16 +15,51 @@
 <body>
 
     <div class="container">
+        <div class="row my-5">
+
+
+
+
+            <form class="col-12" method="post" action="thankyou.php">
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Name</label>
+                    <input type="name" name='name' class="form-control" id="heroname" placeholder="Hero Name">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Power</label>
+                    <select name='ability_id' class="form-control" id="exampleFormControlSelect1">
+                        <?php
+                        $result = get_powers();
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                        ?>
+                                <option value=<?php echo $row["id"] ?>><?php echo $row["ability"] ?></option>
+                        <?php }
+                        } else {
+                            echo "0 results";
+                        } ?>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">About Me</label>
+                    <textarea name="about_me" class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Biography</label>
+                    <textarea name="bio" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+
+
+                <input name='signup' type="hidden"></input>
+                <button type="submit" class="btn btn-secondary">Sign Up</button>
+            </form>
+
+
+        </div>
         <div class="row">
-
-
-            <?php
-
-            include "Home.php";
-
-            // include "heropage.php"
-
-            ?>
+            <form class="col-12" action="Home.php">
+                <button type="submit" class="btn btn-secondary">Home</button>
+            </form>
 
         </div>
     </div>
