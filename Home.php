@@ -1,17 +1,6 @@
 <?php
 include "functions.php";
 
-
-if (array_key_exists('profile', $_POST)) {
-  handle_it();
-}
-function handle_it()
-{
-  echo "This is Profile that is selected";
-}
-
-
-
 $result = get_all_heroes();
 // var_dump($result);
 if ($result->num_rows > 0) {

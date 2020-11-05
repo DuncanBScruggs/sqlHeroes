@@ -23,7 +23,7 @@
             $result = get_one_hero($_POST['profile']);
             // var_dump($result);
             if ($result->num_rows > 0) {
-            // if (1 == 2) {
+                // if (1 == 2) {
                 // output data of each row
                 while ($row = $result->fetch_assoc()) {
                     // echo " - Name: " . $row["name"]. " - About Me: " . $row["about_me"]. "<br>"; 
@@ -34,7 +34,9 @@
                             <h1 class="display-4"><?php echo $row["name"] ?></h1>
                             <p class="lead"><?php echo $row["about_me"] ?></p>
                             <p class="lead"><?php echo $row["biography"] ?></p>
-                            <button type="submit" class="btn btn-secondary">Secondary</button>
+                            <form action="index.php">
+                                <button type="submit" class="btn btn-secondary">Home</button>
+                            </form>
                         </div>
                     </div>
             <?php }
