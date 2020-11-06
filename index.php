@@ -18,8 +18,6 @@
         <div class="row my-5">
 
 
-
-
             <form class="col-12" method="post" action="thankyou.php">
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Name</label>

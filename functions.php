@@ -34,7 +34,7 @@ function get_all_heroes()
 function get_one_hero($id)
 {
   $conn = start_server();
-  $data = $conn->query("SELECT name, about_me, biography FROM heroes WHERE id = $id");
+  $data = $conn->query("SELECT id, name, about_me, biography FROM heroes WHERE id = $id");
   stop_server($conn);
   return $data;
 }
@@ -47,13 +47,22 @@ function get_powers(){
 }
 
 function add_user($name, $about_me, $bio, $ability_id){
-  echo $name;
-  echo $about_me;
-  echo $bio;
   $conn = start_server();
   $conn->query("INSERT INTO heroes (name, about_me, biography) VALUES ('$name', '$about_me', '$bio')");
   $newid = $conn->query("SELECT id FROM heroes WHERE name = $name");
   var_dump($newid);
   $conn->query("INSERT INTO ability_hero (hero_id, ability_id) VALUES ('$newid', '$ability_id')");
+  stop_server($conn);
+}
+
+function delete_user($id){
+    $conn = start_server();
+    $conn->query("DELETE FROM heroes WHERE id = $id");
+    stop_server($conn);
+}
+
+function update_user($id, $name, $about_me, $bio, $image_url){
+  $conn = start_server();
+  $conn->query("UPDATE heroes SET name = '$name', about_me = '$about_me', biography = '$bio', image_url = '$image_url' WHERE id = $id");
   stop_server($conn);
 }

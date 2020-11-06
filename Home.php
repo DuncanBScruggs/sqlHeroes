@@ -28,7 +28,7 @@
               <h5 class="card-title"><?php echo $row["name"] ?></h5>
               <p class="card-text"><?php echo $row["about_me"] ?></p>
               <form method="post" action="heropage.php">
-                <input value=<?php echo $row['id'] ?>  type="hidden"></input>
+                <input value=<?php echo $row['id'] ?> name='profile' type="hidden"></input>
                 <button type="submit" class="btn btn-secondary">Profile</button>
               </form>
             </div>

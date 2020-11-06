@@ -21,16 +21,24 @@
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
             ?>
-                    <div class="jumbotron jumbotron-fluid">
+                    <div class="jumbotron col-12 jumbotron-fluid">
                         <div class="container">
                             <h1 class="display-4"><?php echo $row["name"] ?></h1>
                             <p class="lead"><?php echo $row["about_me"] ?></p>
                             <p class="lead"><?php echo $row["biography"] ?></p>
-                            <form action="Home.php">
-                                <button type="submit" class="btn btn-secondary">Home</button>
-                            </form>
                         </div>
                     </div>
+                    <form action="Home.php">
+                        <button type="submit" class="btn btn-secondary">Home</button>
+                    </form>
+                    <form method="post" action="goodbye.php">
+                        <input value=<?php echo $row['id'] ?> name='delete' type="hidden"></input>
+                        <button type="submit" class="btn btn-danger">DELETE</button>
+                    </form>
+                    <form method="post" action="update.php">
+                        <input value=<?php echo $row['id'] ?> name='update' type="hidden"></input>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </form>
             <?php }
             } else {
                 echo "0 results";
