@@ -45,6 +45,23 @@
             }
             ?>
         </div>
+        <div class="row">
+        <?php
+            $result = get_one_hero_powers($_POST['profile']);
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+            ?>
+                    <div class="jumbotron col-12 jumbotron-fluid">
+                        <div class="container">
+                            <h1 class="display-4"><?php echo $row["ability"] ?></h1>
+                        </div>
+                    </div>
+            <?php }
+            } else {
+                echo "0 results";
+            }
+            ?>
+        </div>
     </div>
 
     <!-- Optional JavaScript -->

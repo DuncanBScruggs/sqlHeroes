@@ -39,6 +39,13 @@ function get_one_hero($id)
   return $data;
 }
 
+function get_one_hero_powers($id){
+  $conn = start_server();
+  $data = $conn->query("SELECT ability FROM ability_hero JOIN abilities ON ability_id = id WHERE hero_id = $id");
+  stop_server($conn);
+  return $data;
+}
+
 function get_powers(){
   $conn = start_server();
   $data = $conn->query("SELECT id, ability FROM abilities");
@@ -49,8 +56,7 @@ function get_powers(){
 function add_user($name, $about_me, $bio, $ability_id){
   $conn = start_server();
   $conn->query("INSERT INTO heroes (name, about_me, biography) VALUES ('$name', '$about_me', '$bio')");
-  $newid = $conn->query("SELECT id FROM heroes WHERE name = $name");
-  var_dump($newid);
+  $newid = $conn->insert_id;
   $conn->query("INSERT INTO ability_hero (hero_id, ability_id) VALUES ('$newid', '$ability_id')");
   stop_server($conn);
 }
